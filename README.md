@@ -1,2 +1,4 @@
-# AnalysisOnHashAlgorithms_Spark_Hadoop
-Analysis on Hash algorithms on Apache Spark and Hadoop, locally and on Amazon AWS Elastic MapReduce
+# project_cc
+Cloud Computing Project - HashCode Analysis on Spark/Hadoop
+
+GitHub: https://github.com/jvru/project_cc

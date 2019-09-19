@@ -1,0 +1,16 @@
+./build/mvn -Pyarn -Phadoop-2.7 -Dhadoop.version=2.7.4 -Dscala-2.11 -DskipTests clean package
+
+./dev/make-distribution.sh --name custom-spark --pip --r --tgz -Psparkr -Phadoop-2.7 -Pyarn -Dhadoop.version=2.7.4 -Dscala-2.11
+
+./dev/make-distribution.sh --name custom-spark --pip --r --tgz -Phadoop-2.7 -Pyarn -Dhadoop.version=2.7.4 -Dscala-2.11
+-Psparkr 
+
+ hadoop fs -put /usr/local/hadoop/README.txt  input
+
+MASTER=spark://172.0.1.1:7077 ./spark-shell  
+
+val file=sc.textFile("hdfs://localhost:9000/user/hadoop/input/README.txt") 
+
+val count=file.flatMap(line => line.split(" ")).map(word => (word,1)).reduceByKey(_+_) 
+
+count.collect()  

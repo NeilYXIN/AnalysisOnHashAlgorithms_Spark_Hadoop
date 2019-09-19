@@ -1,0 +1,13 @@
+R2
+a)
+S1. The below part of code lists the required files for MapReduce mapper,combiner and reducer,and set mmm-map.py, mmm-combiner.py, mmm-reduce.py as the input file for mapper,combiner and reduce, and then set the input directory and output directory as defined at the begining. At last the commands print the content of mmm file to show the result;
+
+S2. The output mmm file stores the min, max and mean key-value pairs as the result of MapReduce. 
+
+S3. mmm-map turn every input content into three key-value pairs as min x.xxx, max x.xxx and mean x.xxx.
+
+S4. mmm-combiner updates the xmax and xmin from key max and min, and add the sum of every content as well as count the number of total content for futher calculation of mean, output processed key-value pairs as min, max and mean.
+
+S5. mmm-reducer continue finish the update task which may not be finished by combiner, and then calculate the mean according to xsum and count.
+
+S6. I don't think combiner's code can be replaced by reducer's because combiner is not guaranteed to launch as job is busy. If replaced and one of the combiner did't work, the calculated value of mean would be wrong. A combiner should function as a optimizer to save the network trasmission and shall not impact the final output. 

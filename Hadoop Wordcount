@@ -1,0 +1,29 @@
+su hadoop
+
+cd /usr/local/hadoop/
+
+./sbin/start-all.sh
+
+jps
+
+./bin/hadoop fs -mkdir /input
+
+./bin/hadoop fs -put file/file*.txt /input
+
+./bin/hadoop fs -ls /input
+
+./bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.4.jar wordcount /input/ /output/wordcount1
+
+./bin/hadoop fs -ls /output/wordcount1
+
+./bin/hadoop fs -cat /output/wordcount1/part-r-00000
+
+
+
+Yx1069073221
+
+./sbin/start-yarn.sh      # 启动YARN
+./sbin/mr-jobhistory-daemon.sh start historyserver  # 开启历史服务器，才能在Web中查看任务运行情况
+
+./sbin/stop-yarn.sh
+./sbin/mr-jobhistory-daemon.sh stop historyserver
